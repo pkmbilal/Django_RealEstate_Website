@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Buildings {% endblock %} 
+
+{% block content %}
+    <!-- Buildings -->
+    <div class="container-fluid">
+        <div class="sub-box">
+            <div class="row">
+                <div class="col-sm-12 mt-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-xxl-9 search-col">
+                            <form action="" class="d-flex gap-3">
+                                <input type="text" class="form-control form-control-lg" id="search" >
+                                <button type="submit" class="btn btn-lg search">Search</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-3 d-flex gap-3">
+                            <a href="" class="btn btn-lg delete">Delete</a>
+                            <a href="" class="btn btn-lg edit">Edit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mt-3 table-responsive">
+                    <table class="table table-hover table-bordered text-center ">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="align-middle">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick="toggle(this)">
+                            </th>
+                            <th scope="col" class="align-middle">Building Name</th>
+                            <th scope="col" class="align-middle">Building Type</th>
+                            <th scope="col" class="align-middle">Rooms</th>
+                            <th scope="col" class="align-middle">Owner Name</th>
+                            <th scope="col" class="align-middle">Mobile Number</th>
+                            <th scope="col" class="align-middle">Lease Period</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
+                            </th>
+                            <td>Andalus</td>
+                            <td>Lease</td>
+                            <td>111</td>
+                            <td>Mohammed Buainain</td>
+                            <td>0543832541</td>
+                            <td>31/12/2022</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
+                            </th>
+                            <td>Sleep High</td>
+                            <td>Lease</td>
+                            <td>111</td>
+                            <td>Mohammed Buainain</td>
+                            <td>0543832541</td>
+                            <td>31/12/2022</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
+                            </th>
+                            <td>Andalus</td>
+                            <td>Lease</td>
+                            <td>111</td>
+                            <td>Mohammed Buainain</td>
+                            <td>0543832541</td>
+                            <td>31/12/2022</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

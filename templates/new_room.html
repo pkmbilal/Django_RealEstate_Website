@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} NewRoom {% endblock %} 
+
+{% block content %}
+    <!-- New Room -->
+    <div class="container-fluid">
+        <div class="main-box new_room">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-start flex-column">
+                    <h1 class="mb-4 mt-2">Room</h1>
+                    <form autocomplete="off">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="room_number" class="form-label">room number</label>
+                                    <input type="number" class="form-control form-control-lg" id="room_number" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="meter_number" class="form-label">meter number</label>
+                                    <input type="text" class="form-control form-control-lg" id="meter_number" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <label for="room_category" class="form-label">room category</label>
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="room_category">
+                                    <option selected>select</option>
+                                    <option value="1">small</option>
+                                    <option value="2">medium</option>
+                                    <option value="3">large</option>
+                                    </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="account_number" class="form-label">account number</label>
+                                    <input type="number" class="form-control form-control-lg" id="account_number" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="room_status" class="form-label">room status</label>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="room_status">
+                                        <option selected>select</option>
+                                        <option value="1">vacant</option>
+                                        <option value="2">occupied</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-5">
+                                    <label for="comments" class="form-label">comments</label>
+                                    <input type="text" class="form-control form-control-lg" id="comments" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <button type="submit" class="btn btn-lg mb-4">Submit</button>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <button type="reset" class="btn btn-lg">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Customers {% endblock %} 
+
+{% block content %}
+    <!-- Buildings -->
+    <div class="container-fluid">
+        <div class="sub-box">
+            <div class="row">
+                <div class="col-sm-12 mt-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-xxl-9 search-col">
+                            <form action="" class="d-flex gap-3">
+                                <input type="text" class="form-control form-control-lg" id="search" >
+                                <button type="submit" class="btn btn-lg search">Search</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-3 d-flex gap-3">
+                            <a href="" class="btn btn-lg delete">Delete</a>
+                            <a href="" class="btn btn-lg edit">Edit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mt-3 table-responsive">
+                    <table class="table table-hover table-bordered text-center ">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="align-middle">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick="toggle(this)">
+                            </th>
+                            <th scope="col" class="align-middle">Name</th>
+                            <th scope="col" class="align-middle">ID Type</th>
+                            <th scope="col" class="align-middle">ID No.</th>
+                            <th scope="col" class="align-middle">Mobile No.</th>
+                            <th scope="col" class="align-middle">Building Name</th>
+                            <th scope="col" class="align-middle">Room No.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
+                            </th>
+                            <td>Mohammed Bilal</td>
+                            <td>Iqama</td>
+                            <td>2391280969</td>
+                            <td>0543831060</td>
+                            <td>Andalus Building</td>
+                            <td>80</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

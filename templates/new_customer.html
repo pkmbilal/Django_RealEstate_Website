@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} NewCustomer {% endblock %} 
+
+{% block content %}
+    <!-- New Building -->
+    <div class="container-fluid">
+        <div class="main-box new_customer">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-start flex-column">
+                    <h1 class="mb-4 mt-2">Customer</h1>
+                    <form autocomplete="off">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">name</label>
+                                    <input type="text" class="form-control form-control-lg" id="name" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="mobile_number" class="form-label">mobile number</label>
+                                    <input type="number" class="form-control form-control-lg" id="mobile_number" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <label for="id_type" class="form-label">id type</label>
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="id_type">
+                                    <option selected>select</option>
+                                    <option value="1">passport</option>
+                                    <option value="2">iqama</option>
+                                    <option value="3">national id</option>
+                                    </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="id_number" class="form-label">id number</label>
+                                    <input type="text" class="form-control form-control-lg" id="id_number" >
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="building_name" class="form-label">building name</label>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="building_name">
+                                        <option selected>select</option>
+                                        <option value="1">Andalus</option>
+                                        <option value="2">Sleep High</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <div class="mb-5">
+                                    <label for="room_number" class="form-label">room number</label>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="room_number">
+                                        <option selected>select</option>
+                                        <option value="1">Room 1</option>
+                                        <option value="2">Room 2</option>
+                                        <option value="3">Room 3</option>
+                                        <option value="4">Room 4</option>
+                                        <option value="5">Room 5</option>
+                                        <option value="6">Room 6</option>
+                                        <option value="7">Room 7</option>
+                                        <option value="8">Room 8</option>
+                                        <option value="9">Room 9</option>
+                                        <option value="10">Room 10</option>
+                                        <option value="11">Room 11</option>
+                                        <option value="12">Room 12</option>
+                                        <option value="13">Room 13</option>
+                                        <option value="14">Room 14</option>
+                                        <option value="15">Room 15</option>
+                                        <option value="16">Room 16</option>
+                                        <option value="17">Room 17</option>
+                                        <option value="18">Room 18</option>
+                                        <option value="19">Room 19</option>
+                                        <option value="20">Room 20</option>
+                                        <option value="21">Room 21</option>
+                                        <option value="22">Room 22</option>
+                                        <option value="23">Room 23</option>
+                                        <option value="24">Room 24</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <button type="submit" class="btn btn-lg mb-4">Submit</button>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                <button type="reset" class="btn btn-lg">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
