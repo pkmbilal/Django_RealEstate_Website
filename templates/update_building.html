@@ -1,59 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} NewBuilding {% endblock %} 
+{% block title %} UpdateBuilding {% endblock %} 
 
 {% block content %}
-    <!-- New Building -->
+    <!-- Update Building -->
     <div class="container-fluid">
         <div class="main-box">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-start flex-column">
-                    <h1 class="mb-4 mt-2">Building</h1>
-                    <form method="POST" autocomplete="off">
+                    <h1 class="mb-4 mt-2">Update Building</h1>
+                    <form method="post" autocomplete="off">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <div class="mb-3">
                                     <label for="building_name" class="form-label">building name</label>
-                                    <input type="text" class="form-control form-control-lg" id="building_name" name="building_name" >
+                                    <!-- <input type="text" class="form-control form-control-lg" id="building_name" name="building_name" > -->
+                                    {{ form.building_name}}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <div class="mb-3">
                                     <label for="name_of_owner" class="form-label">name of owner</label>
-                                    <input type="text" class="form-control form-control-lg" id="name_of_owner" name="name_of_owner" >
+                                    <!-- <input type="text" class="form-control form-control-lg" id="name_of_owner" name="name_of_owner" > -->
+                                    {{ form.name_of_owner}}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <label for="building_type" class="form-label">building type</label>
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="building_type" name="building_type">
+                                <!-- <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="building_type" name="building_type">
                                     <option selected>select</option>
                                     {% for type in bldg_type %}
                                     <option value="{{type.id}}">{{type.building_type}}</option>
                                     {% endfor%}
-                                </select>
+                                </select> -->
+                                {{form.building_type}}
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <div class="mb-3">
                                     <label for="mobile_number" class="form-label">mobile number</label>
-                                    <input type="number" class="form-control form-control-lg" id="mobile_number" name="mobile_number">
+                                    <!-- <input type="number" class="form-control form-control-lg" id="mobile_number" name="mobile_number"> -->
+                                    {{form.mobile_number}}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <div class="mb-3">
                                     <label for="number_of_rooms" class="form-label">number of rooms</label>
-                                    <input type="number" class="form-control form-control-lg" id="number_of_rooms" name="number_of_rooms">
+                                    <!-- <input type="number" class="form-control form-control-lg" id="number_of_rooms" name="number_of_rooms"> -->
+                                    {{form.number_of_rooms}}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <div class="mb-5">
                                     <label for="current_lease_period" class="form-label">current lease period</label>
-                                    <input type="date" class="form-control form-control-lg" id="current_lease_period" name="current_lease_period">
+                                    <!-- <input type="date" class="form-control form-control-lg" id="current_lease_period" name="current_lease_period"> -->
+                                    {{form.current_lease_period}}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                                <button type="submit" class="btn btn-lg mb-4">Submit</button>
+                                <button type="submit" class="btn btn-lg mb-4">Update</button>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                                 <button type="reset" class="btn btn-lg">Reset</button>

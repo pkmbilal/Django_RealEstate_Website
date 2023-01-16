@@ -10,15 +10,11 @@
             <div class="row">
                 <div class="col-sm-12 mt-3">
                     <div class="row">
-                        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-xxl-9 search-col">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 search-col">
                             <form action="" class="d-flex gap-3">
                                 <input type="text" class="form-control form-control-lg" id="search" >
                                 <button type="submit" class="btn btn-lg search">Search</button>
                             </form>
-                        </div>
-                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-3 d-flex gap-3">
-                            <a href="" class="btn btn-lg delete">Delete</a>
-                            <a href="" class="btn btn-lg edit">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -26,28 +22,30 @@
                     <table class="table table-hover table-bordered text-center ">
                         <thead>
                             <tr>
-                            <th scope="col" class="align-middle">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick="toggle(this)">
-                            </th>
                             <th scope="col" class="align-middle">Room No.</th>
                             <th scope="col" class="align-middle">Rent Category</th>
                             <th scope="col" class="align-middle">Room Status</th>
                             <th scope="col" class="align-middle">Meter No.</th>
                             <th scope="col" class="align-middle">Account No.</th>
                             <th scope="col" class="align-middle">Comments</th>
+                            <th scope="col" class="align-middle">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <th scope="row">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
-                            </th>
-                            <td>111</td>
-                            <td>small</td>
-                            <td>occupied</td>
-                            <td>KHSGFJ5467890</td>
-                            <td>10075698741</td>
-                            <td>Room is in good condition</td>
+                            <td class="align-middle">111</td>
+                            <td class="align-middle">small</td>
+                            <td class="align-middle">occupied</td>
+                            <td class="align-middle">KHSGFJ5467890</td>
+                            <td class="align-middle">10075698741</td>
+                            <td class="align-middle">Room is in good condition</td>
+                            <td class="d-flex justify-content-between gap-3">
+                                <a href="" class="btn update">Update</a>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="btn delete">
+                                </form>
+                            </td>
                             </tr>
                         </tbody>
                     </table>

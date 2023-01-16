@@ -10,15 +10,11 @@
             <div class="row">
                 <div class="col-sm-12 mt-3">
                     <div class="row">
-                        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9 col-xxl-9 search-col">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 search-col">
                             <form action="" class="d-flex gap-3">
                                 <input type="text" class="form-control form-control-lg" id="search" >
                                 <button type="submit" class="btn btn-lg search">Search</button>
                             </form>
-                        </div>
-                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 col-xxl-3 d-flex gap-3">
-                            <a href="" class="btn btn-lg delete">Delete</a>
-                            <a href="" class="btn btn-lg edit">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -26,51 +22,33 @@
                     <table class="table table-hover table-bordered text-center ">
                         <thead>
                             <tr>
-                            <th scope="col" class="align-middle">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick="toggle(this)">
-                            </th>
-                            <th scope="col" class="align-middle">Building Name</th>
-                            <th scope="col" class="align-middle">Building Type</th>
-                            <th scope="col" class="align-middle">Rooms</th>
-                            <th scope="col" class="align-middle">Owner Name</th>
-                            <th scope="col" class="align-middle">Mobile Number</th>
-                            <th scope="col" class="align-middle">Lease Period</th>
+                                <th scope="col" class="align-middle">Building Name</th>
+                                <th scope="col" class="align-middle">Building Type</th>
+                                <th scope="col" class="align-middle">Rooms</th>
+                                <th scope="col" class="align-middle">Owner Name</th>
+                                <th scope="col" class="align-middle">Mobile Number</th>
+                                <th scope="col" class="align-middle">Lease Period</th>
+                                <th scope="col" class="align-middle">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for list in building_list %}
                             <tr>
-                            <th scope="row">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
-                            </th>
-                            <td>Andalus</td>
-                            <td>Lease</td>
-                            <td>111</td>
-                            <td>Mohammed Buainain</td>
-                            <td>0543832541</td>
-                            <td>31/12/2022</td>
+                                <td class="align-middle">{{list.building_name}}</td>
+                                <td class="align-middle">{{list.building_type}}</td>
+                                <td class="align-middle">{{list.number_of_rooms}}</td>
+                                <td class="align-middle">{{list.name_of_owner}}</td>
+                                <td class="align-middle">{{list.mobile_number}}</td>
+                                <td class="align-middle">{{list.current_lease_period}}</td>
+                                <td class="d-flex justify-content-between gap-3">
+                                    <a href="{% url 'update_building' list.id %}" class="btn update">Update</a>
+                                    <form action="{% url 'delete_building' list.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn delete">
+                                    </form>
+                                </td>
                             </tr>
-                            <tr>
-                            <th scope="row">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
-                            </th>
-                            <td>Sleep High</td>
-                            <td>Lease</td>
-                            <td>111</td>
-                            <td>Mohammed Buainain</td>
-                            <td>0543832541</td>
-                            <td>31/12/2022</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="check_box">
-                            </th>
-                            <td>Andalus</td>
-                            <td>Lease</td>
-                            <td>111</td>
-                            <td>Mohammed Buainain</td>
-                            <td>0543832541</td>
-                            <td>31/12/2022</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
