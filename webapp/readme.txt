@@ -32,3 +32,10 @@ bldg_type = BuildingType.objects.all()
             bldg.save()
             return redirect('buildings')
     else:
+
+
+    # last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg'})),
+    # email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control form-control-lg'})),
+    # username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg'})),
+    # password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control form-control-lg'})),
+    # password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control form-control-lg'})),

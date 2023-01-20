@@ -9,7 +9,7 @@ class BuildingForm(ModelForm):
     # building_type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
     number_of_rooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control form-control-lg'}))
     mobile_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control form-control-lg'}))
-    current_lease_period = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control form-control-lg'}))
+    current_lease_period = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control form-control-lg','type':'date'}))
     
     class Meta:
         model = Building
