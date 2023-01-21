@@ -48,10 +48,10 @@ class Room(models.Model):
     room_type = models.ForeignKey(RoomType, on_delete=models.DO_NOTHING)
     room_status = models.ForeignKey(RoomStatus, on_delete=models.DO_NOTHING)
     meter_number = models.CharField(max_length=16)
-    account_number = models.IntegerField(max_length=10)
+    account_number = models.IntegerField()
 
     class Meta:
         verbose_name_plural = 'Rooms'
 
     def __str__ (self):
-        return self.room_number
+        return str(self.room_number)

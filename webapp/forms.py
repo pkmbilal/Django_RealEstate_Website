@@ -1,4 +1,4 @@
-from .models import Building
+from .models import Building, Room
 from django.forms import ModelForm
 from django import forms
 
@@ -13,4 +13,16 @@ class BuildingForm(ModelForm):
     
     class Meta:
         model = Building
+        fields = '__all__'
+
+class RoomForm(ModelForm):
+    room_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control form-control-lg'}))
+    # building_name = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-control-lg'}))
+    # room_type = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-control-lg'}))
+    # room_status = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-control-lg'}))
+    meter_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg', 'maxlength':'16'}))
+    account_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control form-control-lg'}))
+
+    class Meta:
+        model = Room
         fields = '__all__'

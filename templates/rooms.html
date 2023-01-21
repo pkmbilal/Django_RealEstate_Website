@@ -23,30 +23,32 @@
                         <thead>
                             <tr>
                             <th scope="col" class="align-middle">Room No.</th>
-                            <th scope="col" class="align-middle">Rent Category</th>
+                            <th scope="col" class="align-middle">Building Name</th>
+                            <th scope="col" class="align-middle">Rent Type</th>
                             <th scope="col" class="align-middle">Room Status</th>
                             <th scope="col" class="align-middle">Meter No.</th>
                             <th scope="col" class="align-middle">Account No.</th>
-                            <th scope="col" class="align-middle">Comments</th>
                             <th scope="col" class="align-middle">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td class="align-middle">111</td>
-                            <td class="align-middle">small</td>
-                            <td class="align-middle">occupied</td>
-                            <td class="align-middle">KHSGFJ5467890</td>
-                            <td class="align-middle">10075698741</td>
-                            <td class="align-middle">Room is in good condition</td>
-                            <td class="d-flex justify-content-between gap-3">
-                                <a href="" class="btn update">Update</a>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <input type="submit" value="Delete" class="btn delete">
-                                </form>
-                            </td>
-                            </tr>
+                            {% for room in rooms %}
+                                <tr>
+                                <td class="align-middle">{{room.room_number}}</td>
+                                <td class="align-middle">{{room.building_name}}</td>
+                                <td class="align-middle">{{room.room_type}}</td>
+                                <td class="align-middle">{{room.room_status}}</td>
+                                <td class="align-middle">{{room.meter_number}}</td>
+                                <td class="align-middle">{{room.account_number}}</td>
+                                <td class="d-flex justify-content-between gap-3">
+                                    <a href="{% url 'update_room' room.id %}" class="btn update">Update</a>
+                                    <form action="{% url 'delete_room' room.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn delete">
+                                    </form>
+                                </td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
