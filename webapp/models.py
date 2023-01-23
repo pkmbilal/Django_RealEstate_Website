@@ -28,6 +28,15 @@ class RoomStatus(models.Model):
     def __str__ (self):
         return self.room_status
 
+class IdType(models.Model):
+    id_type = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = 'ID Types'
+
+    def __str__(self):
+        return self.id_type
+
 class Building(models.Model):
     building_name = models.CharField(max_length=50)
     name_of_owner = models.CharField(max_length=50)
@@ -55,3 +64,17 @@ class Room(models.Model):
 
     def __str__ (self):
         return str(self.room_number)
+
+class Customer(models.Model):
+    customer_name = models.CharField(max_length=50)        
+    mobile_number = models.IntegerField()
+    id_type = models.ForeignKey(IdType, on_delete=models.DO_NOTHING)
+    id_number = models.CharField(max_length=50, unique=True)
+    building_name = models.ForeignKey(Building, on_delete=models.CASCADE)
+    room_number = models.ForeignKey(Room, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = 'Customers'
+
+    def __str__(self):
+        return self.customer_name
