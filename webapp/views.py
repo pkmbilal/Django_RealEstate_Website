@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import BuildingForm, RoomForm
 from webapp.models import Building, Room
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -10,7 +9,6 @@ from django.contrib.auth.models import User
 @login_required()
 def Home(request):
     return render(request, 'index.html', {'context':'null'})
-
 
 @login_required()
 def Customers(request):
@@ -21,6 +19,8 @@ def Receipts(request):
     return render(request, 'receipts.html', {'context':'Receipts'})
 
 #------------------------Buildings------------------------------
+
+# Show all Buildings
 @login_required()
 def BuildingsView(request):
     building_list = Building.objects.all()
@@ -54,19 +54,21 @@ def UpdateBuilding(request, bldg_id):
 # Delete Building
 @login_required()
 def DeleteBuilding(request, bldg_id):
-    building_list = Building.objects.all()
     if request.method == "POST":
         bldg=Building.objects.get(id=bldg_id)
         bldg.delete()
         return redirect('buildings')
-    return render(request, 'buildings.html', {'building_list':building_list})
+    return redirect('buildings')
 
 #----------------------------Rooms---------------------------------
+
+# Show all Rooms
 @login_required()
 def RoomsView(request):
     rooms = Room.objects.all()
     return render(request, 'rooms.html', {'context':'Rooms', 'rooms':rooms})
 
+# New Room
 @login_required
 def NewRoom(request):
     form = RoomForm()
@@ -77,6 +79,7 @@ def NewRoom(request):
             return redirect ('rooms')
     return render(request, 'new_room.html', {'form':form})
 
+# Update Room
 @login_required
 def UpdateRoom(request, room_id):
     update_room = Room.objects.get(id=room_id)
@@ -88,7 +91,7 @@ def UpdateRoom(request, room_id):
             return redirect('rooms')
     return render(request, 'update_room.html', {'form':form})
 
-
+# Delete Room
 @login_required
 def DeleteRoom(request, room_id):
     if request.method == 'POST':

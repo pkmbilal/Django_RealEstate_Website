@@ -4,25 +4,39 @@ from django import forms
 
 
 class BuildingForm(ModelForm):
-    building_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
-    name_of_owner = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
-    # building_type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control form-control-lg'}))
-    number_of_rooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control form-control-lg'}))
-    mobile_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control form-control-lg'}))
-    current_lease_period = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control form-control-lg','type':'date'}))
-    
     class Meta:
         model = Building
         fields = '__all__'
+        widgets = {
+            'building_name': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'name_of_owner': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'number_of_rooms': forms.NumberInput(attrs={'class': 'form-control form-control-lg'}),
+            'mobile_number': forms.NumberInput(attrs={'class': 'form-control form-control-lg'}),
+            'current_lease_period': forms.DateInput(attrs={'class':'form-control form-control-lg','type':'date'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['building_type'].empty_label = "Select an option"
+        self.fields['building_type'].widget.attrs.update({'class':'form-control form-control-lg'})
 
 class RoomForm(ModelForm):
-    room_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control form-control-lg'}))
-    # building_name = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-control-lg'}))
-    # room_type = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-control-lg'}))
-    # room_status = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-control-lg'}))
-    meter_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg', 'maxlength':'16'}))
-    account_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control form-control-lg'}))
-
     class Meta:
         model = Room
         fields = '__all__'
+        widgets = {
+            'room_number': forms.NumberInput(attrs={'class':'form-control form-control-lg'}),
+            'meter_number': forms.TextInput(attrs={'class':'form-control form-control-lg', 'maxlength':'16'}),
+            'account_number': forms.NumberInput(attrs={'class':'form-control form-control-lg'})
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['building_name'].empty_label = "Select an option"
+        self.fields['building_name'].widget.attrs.update({'class':'form-control form-control-lg'})
+
+        self.fields['room_type'].empty_label = "Select an option"
+        self.fields['room_type'].widget.attrs.update({'class':'form-control form-control-lg'})
+
+        self.fields['room_status'].empty_label = "Select an option"
+        self.fields['room_status'].widget.attrs.update({'class':'form-control form-control-lg'})
