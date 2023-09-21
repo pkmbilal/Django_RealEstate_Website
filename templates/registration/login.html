@@ -22,13 +22,11 @@
                         {% csrf_token %}
                         <div class="mb-3">
                           <label for="username" class="form-label">username</label>
-                          <!-- <input type="text" class="form-control form-control-lg" id="username" name="username"> -->
-                          {{form.username}}
+                          <input type="text" class="form-control form-control-lg" name="username">
                         </div>
                         <div class="mb-3">
                           <label for="Password" class="form-label">password</label>
-                          <!-- <input type="password" class="form-control form-control-lg" id="Password" name="password"> -->
-                          {{form.password}}
+                          <input type="password" class="form-control form-control-lg" name="password">
                         </div>
                         <h5 class="text-end mb-4"><a href="">forgot password?</a></h5>
                         <button type="submit" class="btn btn-lg mb-4">Login</button>

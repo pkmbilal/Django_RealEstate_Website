@@ -48,7 +48,7 @@ class CustomerForm(ModelForm):
         widgets = {
             'customer_name': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
             'mobile_number': forms.NumberInput(attrs={'class':'form-control form-control-lg'}),
-            'id_number': forms.NumberInput(attrs={'class':'form-control form-control-lg'})
+            'id_number': forms.TextInput(attrs={'class':'form-control form-control-lg'})
         }
     
     def __init__(self, *args, **kwargs):
