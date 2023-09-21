@@ -16,8 +16,12 @@ urlpatterns = [
     path('update_room/<int:room_id>', views.UpdateRoom, name='update_room'),
     path('delete_room/<int:room_id>', views.DeleteRoom, name='delete_room'),
 
+    #Customers
     path('customers', views.Customers, name='customers'),
-    path('receipts', views.Receipts, name='receipts'),
     path('new_customer', views.NewCustomer, name='new_customer'),
+    path('update_customer/<int:customer_id>',views.UpdateCustomer,name='update_customer'),
+    path('delete_customer/<int:customer_id>',views.DeleteCustomer,name='delete_customer'),
+
+    path('receipts', views.Receipts, name='receipts'),
     path('new_receipt', views.NewReceipt, name='new_receipt'),
 ]

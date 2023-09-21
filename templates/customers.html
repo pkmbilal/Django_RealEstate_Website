@@ -32,21 +32,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td class="align-middle">Mohammed Bilal</td>
-                            <td class="align-middle">Iqama</td>
-                            <td class="align-middle">2391280969</td>
-                            <td class="align-middle">0543831060</td>
-                            <td class="align-middle">Andalus Building</td>
-                            <td class="align-middle">80</td>
-                            <td class="d-flex justify-content-between gap-3">
-                                <a href="" class="btn update">Update</a>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <input type="submit" value="Delete" class="btn delete">
-                                </form>
-                            </td>
-                            </tr>
+                            {% for customer in customer_list %}
+                                <tr>
+                                <td class="align-middle">{{customer.customer_name}}</td>
+                                <td class="align-middle">{{customer.id_type}}</td>
+                                <td class="align-middle">{{customer.id_number}}</td>
+                                <td class="align-middle">{{customer.mobile_number}}</td>
+                                <td class="align-middle">{{customer.building_name}}</td>
+                                <td class="align-middle">{{customer.room_number}}</td>
+                                <td class="d-flex justify-content-between gap-3">
+                                    <a href="{% url 'update_customer' customer.id %}" class="btn update">Update</a>
+                                    <form action="{% url 'delete_customer' customer.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn delete">
+                                    </form>
+                                </td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

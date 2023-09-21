@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import BuildingForm, RoomForm
-from webapp.models import Building, Room
+from .forms import BuildingForm, RoomForm, CustomerForm
+from webapp.models import Building, Room, Customer
 from django.contrib.auth.decorators import login_required
 
 
@@ -10,9 +10,7 @@ from django.contrib.auth.decorators import login_required
 def Home(request):
     return render(request, 'index.html', {'context':'null'})
 
-@login_required()
-def Customers(request):
-    return render(request, 'customers.html', {'context':'Customers'})
+
 
 @login_required()
 def Receipts(request):
@@ -77,7 +75,7 @@ def NewRoom(request):
         if form.is_valid():
             form.save()
             return redirect ('rooms')
-    return render(request, 'new_room.html', {'form':form})
+    return render(request, 'new_room.html', {'context':'NewRoom','form':form})
 
 # Update Room
 @login_required
@@ -89,7 +87,7 @@ def UpdateRoom(request, room_id):
         if form.is_valid():
             form.save()
             return redirect('rooms')
-    return render(request, 'update_room.html', {'form':form})
+    return render(request, 'update_room.html', {'context':'UpdateRoom','form':form})
 
 # Delete Room
 @login_required
@@ -101,9 +99,45 @@ def DeleteRoom(request, room_id):
     return render(request, 'rooms.html')
 
 @login_required()
-def NewCustomer(request):
-    return render(request, 'new_customer.html', {'context':'NewCustomer'})
-
-@login_required()
 def NewReceipt(request):
     return render(request, 'new_receipt.html', {'context':'NewReceipt'})
+
+#----------------------------Customers---------------------------------
+
+# Show all Customers
+@login_required()
+def Customers(request):
+    customer_list = Customer.objects.all()
+    return render(request, 'customers.html', {'context':'Customers', 'customer_list':customer_list})
+
+# New Customer
+@login_required()
+def NewCustomer(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('customers')
+    form = CustomerForm()
+    return render(request, 'new_customer.html', {'context':'NewCustomer','form':form})
+
+
+# Update Customer
+def UpdateCustomer(request,customer_id):
+    customer = Customer.objects.get(id=customer_id)
+    customerForm = CustomerForm(request.POST, instance=customer)
+    if request.method == 'POST':
+        if customerForm.is_valid():
+            customerForm.save()
+            return redirect('customers')
+        return render(request, 'update_customer.html',{'form':customerForm})
+    else:
+        customerForm = CustomerForm(instance=customer)
+        return render(request, 'update_customer.html',{'context':'UpdateCustomer','form':customerForm})
+    
+# Delete Customer
+def DeleteCustomer(request,customer_id):
+    if request.method == "POST":
+        customer = Customer.objects.get(id=customer_id)
+        customer.delete()
+        return redirect('customers')
