@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from accounts.forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.password_validation import validate_password
 
 # New User
 def register(request):
@@ -47,3 +49,37 @@ def ForgotPassword(request):
 
     else:
         return render(request,'registration/forgot_password.html')
+    
+# Change Password
+@login_required
+def ChangePassword(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+
+        if not username or not current_password or not new_password:
+            print('Username or Current password or New password field is empty!!!')
+            return render(request,'registration/change_password.html')
+
+        # Check Current Password is Mathing or Not
+        try:
+            user = User.objects.get(username=username)
+            if not user.check_password(current_password):
+                print('Wrong Current Password!!!')
+                return render(request,'registration/change_password.html')
+        except User.DoesNotExist:
+            print('User not exist!!!')
+            return render(request,'registration/change_password.html')
+        
+        # Check New Password is valid or not
+        try:
+            validate_password(new_password)
+        except Exception:
+            print('Password is not valid!!!')
+            return render(request,'registration/change_password.html')
+        user.set_password(new_password)
+        user.save()
+        return redirect('login')
+    else:
+        return render(request,'registration/change_password.html')

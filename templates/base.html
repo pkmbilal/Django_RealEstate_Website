@@ -57,12 +57,11 @@
                     {% if user.is_authenticated %}
                     <div class="dropdown">
                         <button class="btn logged_in dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            
                             <i class='bx bxs-user' ></i> {{user.first_name}} {{user.last_name}}
                         </button>
                         <ul class="dropdown-menu">
                           <a href="#" class="dropdown-item"><li><i class='bx bx-user-circle icon'></i> Profile</li></a>
-                          <a href="#" class="dropdown-item"><li><i class='bx bx-reset icon'></i> Change Password</li></a>
+                          <a href="{% url 'change_password' %}" class="dropdown-item"><li><i class='bx bx-reset icon'></i> Change Password</li></a>
                           <a href="{% url 'logout' %}" class="dropdown-item"><li><i class='bx bxs-arrow-to-left icon'></i></i> Logout</li></a>
                         </ul>
                     </div>
