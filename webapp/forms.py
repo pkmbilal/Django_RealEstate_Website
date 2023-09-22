@@ -1,4 +1,4 @@
-from .models import Building, Room, Customer
+from .models import Building, Room, Customer, Receipt
 from django.forms import ModelForm
 from django import forms
 
@@ -58,6 +58,26 @@ class CustomerForm(ModelForm):
 
         self.fields['building_name'].empty_label = "Select an option"
         self.fields['building_name'].widget.attrs.update({'class':'form-control form-control-lg'})
+
+        self.fields['room_number'].empty_label = "Select an option"
+        self.fields['room_number'].widget.attrs.update({'class':'form-control form-control-lg'})
+
+class ReceiptForm(ModelForm):
+    class Meta:
+        model = Receipt
+        fields = '__all__'
+        widgets = {
+            'date': forms.DateInput(attrs={'class':'form-control form-control-lg','type':'date'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control form-control-lg'}),
+            'start_date': forms.DateInput(attrs={'class':'form-control form-control-lg','type':'date'}),
+            'end_date': forms.DateInput(attrs={'class':'form-control form-control-lg','type':'date'}),
+            'comment': forms.TextInput(attrs={'class': 'form-control form-control-lg'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['customer_name'].empty_label = "Select an option"
+        self.fields['customer_name'].widget.attrs.update({'class':'form-control form-control-lg'})
 
         self.fields['room_number'].empty_label = "Select an option"
         self.fields['room_number'].widget.attrs.update({'class':'form-control form-control-lg'})

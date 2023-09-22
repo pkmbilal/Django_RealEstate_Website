@@ -33,22 +33,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td class="align-middle">30/08/2022</td>
-                            <td class="align-middle">Mohammed Bilal</td>
-                            <td class="align-middle">01/09/2022</td>
-                            <td class="align-middle">01/12/2022</td>
-                            <td class="align-middle">80</td>
-                            <td class="align-middle">2,185.00</td>
-                            <td class="align-middle">100 SAR with us.</td>
-                            <td class="d-flex justify-content-between gap-3">
-                                <a href="" class="btn update">Update</a>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <input type="submit" value="Delete" class="btn delete">
-                                </form>
-                            </td>
-                            </tr>
+                            {% for receipt in receipts %}
+                                <tr>
+                                    <td class="align-middle">{{receipt.date}}</td>
+                                    <td class="align-middle">{{receipt.customer_name}}</td>
+                                <td class="align-middle">{{receipt.start_date}}</td>
+                                <td class="align-middle">{{receipt.end_date}}</td>
+                                <td class="align-middle">{{receipt.room_number}}</td>
+                                <td class="align-middle">{{receipt.amount}}</td>
+                                <td class="align-middle">{{receipt.comment}}</td>
+                                <td class="d-flex justify-content-between gap-3">
+                                    <a href="{% url 'update_receipt' receipt.id %}" class="btn update">Update</a>
+                                    <a href="{% url 'delete_receipt' receipt.id %}" class="btn delete">Update</a>
+                                </td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

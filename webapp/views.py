@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import BuildingForm, RoomForm, CustomerForm
-from webapp.models import Building, Room, Customer
+from .forms import BuildingForm, RoomForm, CustomerForm, ReceiptForm
+from webapp.models import Building, Room, Customer, Receipt
 from django.contrib.auth.decorators import login_required
 
 
@@ -8,13 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def Home(request):
-    return render(request, 'index.html', {'context':'null'})
-
-
-
-@login_required()
-def Receipts(request):
-    return render(request, 'receipts.html', {'context':'Receipts'})
+    return render(request, 'index.html')
 
 #------------------------Buildings------------------------------
 
@@ -98,10 +92,6 @@ def DeleteRoom(request, room_id):
         return redirect('rooms')
     return render(request, 'rooms.html')
 
-@login_required()
-def NewReceipt(request):
-    return render(request, 'new_receipt.html', {'context':'NewReceipt'})
-
 #----------------------------Customers---------------------------------
 
 # Show all Customers
@@ -123,6 +113,7 @@ def NewCustomer(request):
 
 
 # Update Customer
+@login_required()
 def UpdateCustomer(request,customer_id):
     customer = Customer.objects.get(id=customer_id)
     customerForm = CustomerForm(request.POST, instance=customer)
@@ -136,8 +127,49 @@ def UpdateCustomer(request,customer_id):
         return render(request, 'update_customer.html',{'context':'UpdateCustomer','form':customerForm})
     
 # Delete Customer
+@login_required()
 def DeleteCustomer(request,customer_id):
     if request.method == "POST":
         customer = Customer.objects.get(id=customer_id)
         customer.delete()
         return redirect('customers')
+
+#----------------------------Receipts---------------------------------
+
+# Show all Receipts
+@login_required()
+def Receipts(request):
+    receipt = Receipt.objects.all()
+    return render(request,'receipts.html',{'context': 'Receipts', 'receipts':receipt})
+
+# New Receipt
+@login_required()
+def NewReceipt(request):
+    if request.method == 'POST':
+        form = ReceiptForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('receipts')
+    else:
+        form = ReceiptForm()
+        return render(request, 'new_receipt.html', {'context':'NewReceipt', 'form':form})
+
+# Update Receipt
+@login_required
+def UpdateReceipt(request,receipt_id):
+    receipt = Receipt.objects.get(id=receipt_id)
+    form = ReceiptForm(request.POST, instance=receipt)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('receipts')
+    else:
+        form = ReceiptForm(instance=receipt)
+        return render(request,'update_receipt.html',{'context':'UpdateReceipt','form':form})
+
+# Delete Receipt
+@login_required
+def DeleteReceipt(request,receipt_id):
+    receipt = Receipt.objects.get(id=receipt_id)
+    receipt.delete()
+    return redirect('receipts')

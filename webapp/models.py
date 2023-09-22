@@ -78,3 +78,15 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.customer_name
+    
+class Receipt(models.Model):
+    date = models.DateField(auto_now_add=True,blank=False)
+    customer_name = models.ForeignKey(Customer,on_delete=models.DO_NOTHING)
+    room_number = models.ForeignKey(Room,on_delete=models.DO_NOTHING)
+    amount = models.DecimalField(max_digits=7, decimal_places=2)
+    start_date = models.DateField(blank=False)
+    end_date = models.DateField(blank=False)
+    comment = models.CharField(max_length=250)
+
+    class Meta:
+        verbose_name_plural = 'Receipts'
