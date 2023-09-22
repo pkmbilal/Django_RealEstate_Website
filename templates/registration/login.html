@@ -28,7 +28,7 @@
                           <label for="Password" class="form-label">password</label>
                           <input type="password" class="form-control form-control-lg" name="password">
                         </div>
-                        <h5 class="text-end mb-4"><a href="">forgot password?</a></h5>
+                        <h5 class="text-end mb-4"><a href="{% url 'forgot_password' %}">forgot password?</a></h5>
                         <button type="submit" class="btn btn-lg mb-4">Login</button>
                         <h5 class="text-center"><a href="{% url 'register' %}">create an account</a></h5>
                     </form>
