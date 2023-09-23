@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from accounts.forms import RegisterForm
+from django.shortcuts import render, redirect, get_object_or_404
+from accounts.forms import RegisterForm, ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -83,3 +83,18 @@ def ChangePassword(request):
         return redirect('login')
     else:
         return render(request,'registration/change_password.html')
+    
+# Profile Page
+@login_required
+def UserProfile(request,user_id):
+    user = get_object_or_404(User, id=user_id)
+    form = ProfileForm(request.POST or None, instance=user)
+    if request.method == 'POST':
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            # Checks user given email is alredy in database
+            if User.objects.filter(email=email).exclude(id=user.id).exists():
+                return render (request,'registration/profile.html',{'form':form})
+            form.save()
+            return redirect('home')
+    return render (request,'registration/profile.html',{'form':form})
