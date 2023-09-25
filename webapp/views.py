@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import BuildingForm, RoomForm, CustomerForm, ReceiptForm
 from webapp.models import Building, Room, Customer, Receipt
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 
 # Create your views here.
 
@@ -15,6 +15,10 @@ def Home(request):
 # Show all Buildings
 @login_required()
 def BuildingsView(request):
+    if request.method == 'POST':
+        searchData = request.POST.get('search')
+        building_list = Building.objects.filter(Q(building_name__icontains=searchData) | Q(building_type__building_type__iexact=searchData))
+        return render(request, 'buildings.html', {'context': 'Buildings', 'building_list': building_list})
     building_list = Building.objects.all()
     return render(request, 'buildings.html', {'context': 'Buildings', 'building_list': building_list})
 
@@ -57,6 +61,10 @@ def DeleteBuilding(request, bldg_id):
 # Show all Rooms
 @login_required()
 def RoomsView(request):
+    if request.method == 'POST':
+        searchData = request.POST.get('search')
+        rooms = Room.objects.filter(Q(building_name__building_name__icontains=searchData) | Q(room_number__iexact=searchData) | Q(room_status__room_status__iexact=searchData))
+        return render(request, 'rooms.html', {'context': 'Rooms', 'rooms': rooms})
     rooms = Room.objects.all()
     return render(request, 'rooms.html', {'context':'Rooms', 'rooms':rooms})
 
@@ -97,6 +105,10 @@ def DeleteRoom(request, room_id):
 # Show all Customers
 @login_required()
 def Customers(request):
+    if request.method == 'POST':
+        searchData = request.POST.get('search')
+        customer_list = Customer.objects.filter(Q(customer_name__icontains=searchData) | Q(mobile_number__iexact=searchData) | Q(id_number__iexact=searchData))
+        return render(request, 'customers.html', {'context': 'Customers', 'customer_list': customer_list})
     customer_list = Customer.objects.all()
     return render(request, 'customers.html', {'context':'Customers', 'customer_list':customer_list})
 
