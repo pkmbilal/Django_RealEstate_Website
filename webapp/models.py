@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class BuildingType(models.Model):
@@ -80,6 +81,7 @@ class Customer(models.Model):
         return self.customer_name
     
 class Receipt(models.Model):
+    receipt_number = models.AutoField(primary_key=True)
     date = models.DateField(auto_now_add=True,blank=False)
     customer_name = models.ForeignKey(Customer,on_delete=models.DO_NOTHING)
     room_number = models.ForeignKey(Room,on_delete=models.DO_NOTHING)

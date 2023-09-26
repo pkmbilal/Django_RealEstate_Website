@@ -4,15 +4,16 @@
 {% block title %} Receipts {% endblock %} 
 
 {% block content %}
-    <!-- Buildings -->
+    <!-- Receipts -->
     <div class="container-fluid">
         <div class="sub-box">
             <div class="row">
                 <div class="col-sm-12 mt-3">
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 search-col">
-                            <form action="" class="d-flex gap-3">
-                                <input type="text" class="form-control form-control-lg" id="search" >
+                            <form method="post" class="d-flex gap-3" autocomplete="off">
+                                {% csrf_token %}
+                                <input type="text" class="form-control form-control-lg" name="search" >
                                 <button type="submit" class="btn btn-lg search">Search</button>
                             </form>
                         </div>
@@ -22,6 +23,7 @@
                     <table class="table table-hover table-bordered text-center ">
                         <thead>
                             <tr>
+                            <th scope="col" class="align-middle">Receipt No.</th>
                             <th scope="col" class="align-middle">Date</th>
                             <th scope="col" class="align-middle">Customer Name</th>
                             <th scope="col" class="align-middle">Start Date</th>
@@ -35,6 +37,7 @@
                         <tbody>
                             {% for receipt in receipts %}
                                 <tr>
+                                    <td class="align-middle">{{receipt.receipt_number}}</td>
                                     <td class="align-middle">{{receipt.date}}</td>
                                     <td class="align-middle">{{receipt.customer_name}}</td>
                                 <td class="align-middle">{{receipt.start_date}}</td>
@@ -43,8 +46,8 @@
                                 <td class="align-middle">{{receipt.amount}}</td>
                                 <td class="align-middle">{{receipt.comment}}</td>
                                 <td class="d-flex justify-content-between gap-3">
-                                    <a href="{% url 'update_receipt' receipt.id %}" class="btn update">Update</a>
-                                    <a href="{% url 'delete_receipt' receipt.id %}" class="btn delete">Update</a>
+                                    <a href="{% url 'update_receipt' receipt.receipt_number %}" class="btn update">Update</a>
+                                    <a href="{% url 'delete_receipt' receipt.receipt_number %}" class="btn delete">Delete</a>
                                 </td>
                                 </tr>
                             {% endfor %}

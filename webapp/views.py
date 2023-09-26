@@ -151,6 +151,10 @@ def DeleteCustomer(request,customer_id):
 # Show all Receipts
 @login_required()
 def Receipts(request):
+    if request.method == 'POST':
+        searchData = request.POST.get('search')
+        receipt = Receipt.objects.filter(Q(receipt_number__iexact=searchData) | Q(customer_name__customer_name__icontains=searchData) | Q(room_number__room_number__iexact=searchData))
+        return render(request, 'receipts.html', {'context': 'Receipts', 'receipts':receipt})
     receipt = Receipt.objects.all()
     return render(request,'receipts.html',{'context': 'Receipts', 'receipts':receipt})
 
@@ -169,7 +173,7 @@ def NewReceipt(request):
 # Update Receipt
 @login_required
 def UpdateReceipt(request,receipt_id):
-    receipt = Receipt.objects.get(id=receipt_id)
+    receipt = Receipt.objects.get(receipt_number=receipt_id)
     form = ReceiptForm(request.POST, instance=receipt)
     if request.method == 'POST':
         if form.is_valid():
@@ -182,6 +186,6 @@ def UpdateReceipt(request,receipt_id):
 # Delete Receipt
 @login_required
 def DeleteReceipt(request,receipt_id):
-    receipt = Receipt.objects.get(id=receipt_id)
+    receipt = Receipt.objects.get(receipt_number=receipt_id)
     receipt.delete()
     return redirect('receipts')
